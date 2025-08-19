@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb+srv://zedanmhmd41:Cw6cRYS0UOVe8VjS@education-platform.yl1ruff.mongodb.net/eduSphereData?retryWrites=true&w=majority&appName=education-platform
+    networks:
+      - app-network
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
